@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Primary meta -->
+    <title>SAIS — Student Academic Intelligence</title>
+    <meta name="description" content="Manage your timetable, courses, assignments, and AI-powered study plans." />
+    <meta name="theme-color" content="#080C18" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/icons/icon-192.png" />
+
+    <!-- Apple PWA (iOS 12+) -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="SAIS" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+    <!-- Open Graph (social sharing) -->
+    <meta property="og:title" content="SAIS — Student Academic Intelligence" />
+    <meta property="og:description" content="Your intelligent academic companion." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/icons/icon-512.png" />
+    <script type="module" crossorigin src="/assets/index-CytVrp_W.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DJa98WU7.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>
