@@ -5,7 +5,7 @@ Application configuration using Pydantic Settings.
 Reads from environment variables or .env file.
 
 Set DATABASE_URL in your .env file to connect to PostgreSQL:
-  DATABASE_URL=postgresql+psycopg2://postgres:secret@localhost:5432/learnable
+  DATABASE_URL=postgresql+psycopg://postgres:secret@localhost:5432/learnable
 """
 from pydantic_settings import BaseSettings
 from functools import lru_cache
@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
 
     # Database — PostgreSQL (override via DATABASE_URL in .env)
-    DATABASE_URL: str = "postgresql+psycopg2://postgres:secret@localhost:5432/learnable"
+    DATABASE_URL: str = "postgresql+psycopg://postgres:secret@localhost:5432/learnable"
 
     # File uploads
     UPLOAD_DIR: str = "uploads"

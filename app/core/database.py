@@ -2,8 +2,8 @@
 app/core/database.py
 --------------------
 SQLAlchemy database engine and session management.
-Uses PostgreSQL via psycopg2. Configure DATABASE_URL in .env:
-  DATABASE_URL=postgresql+psycopg2://postgres:secret@localhost:5432/learnable
+Uses PostgreSQL via psycopg (v3). Configure DATABASE_URL in .env:
+  DATABASE_URL=postgresql+psycopg://postgres:secret@localhost:5432/learnable
 """
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
