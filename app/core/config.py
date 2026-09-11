@@ -25,6 +25,12 @@ class Settings(BaseSettings):
     # Database — PostgreSQL (override via DATABASE_URL in .env)
     DATABASE_URL: str = "postgresql+psycopg://postgres:secret@localhost:5432/learnable"
 
+    # Supabase Auth / PostgreSQL deployment settings
+    SUPABASE_URL: str = ""
+    SUPABASE_ANON_KEY: str = ""
+    SUPABASE_JWT_SECRET: str = ""
+    SUPABASE_OAUTH_REDIRECT_URL: str = ""
+
     # File uploads
     UPLOAD_DIR: str = "uploads"
     MAX_UPLOAD_SIZE: int = 50 * 1024 * 1024  # 50 MB
