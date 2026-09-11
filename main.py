@@ -30,10 +30,12 @@ def get_base_dir():
 
 BASE_DIR = get_base_dir()
 
-# Look for the frontend dist folder
-FRONTEND_DIST = os.path.join(BASE_DIR, "..", "frontend", "dist")
+# Look for the frontend dist folder in the repository first.
+FRONTEND_DIST = os.path.join(BASE_DIR, "frontend", "dist")
 if not os.path.isdir(FRONTEND_DIST):
-    # When packaged as .exe, dist is placed next to the exe
+    FRONTEND_DIST = os.path.join(BASE_DIR, "..", "frontend", "dist")
+if not os.path.isdir(FRONTEND_DIST):
+    # When packaged as .exe, dist is placed next to the exe.
     FRONTEND_DIST = os.path.join(BASE_DIR, "dist")
 
 # Lifespan context manager (replaces deprecated @app.on_event)
@@ -88,8 +90,12 @@ def health():
 # Serve React frontend — catch-all so client-side routing works
 if os.path.isdir(FRONTEND_DIST):
     # Static assets (JS, CSS, icons, etc.)
-    app.mount("/assets", StaticFiles(directory=os.path.join(FRONTEND_DIST, "assets")), name="assets")
-    app.mount("/icons",  StaticFiles(directory=os.path.join(FRONTEND_DIST, "icons")),  name="icons")
+    assets_dir = os.path.join(FRONTEND_DIST, "assets")
+    if os.path.isdir(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+    icons_dir = os.path.join(FRONTEND_DIST, "icons")
+    if os.path.isdir(icons_dir):
+        app.mount("/icons", StaticFiles(directory=icons_dir), name="icons")
 
     @app.get("/sw.js")
     def sw():
@@ -118,4 +124,3 @@ if __name__ == "__main__":
 
     threading.Thread(target=open_browser, daemon=True).start()
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
-
