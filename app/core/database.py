@@ -16,6 +16,7 @@ engine = create_engine(
     pool_size=5,                # Maintained persistent connections
     max_overflow=10,            # Extra connections beyond pool_size
     pool_pre_ping=True,         # Verify connection is alive before using it
+    connect_args={"prepare_threshold": None},  # Supabase transaction pooler compatibility
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -35,4 +36,3 @@ def get_db():
 def create_tables():
     """Create all tables defined in models. Called at app startup."""
     Base.metadata.create_all(bind=engine)
-
